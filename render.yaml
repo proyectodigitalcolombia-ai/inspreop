@@ -1,0 +1,20 @@
+services:
+  # Servicio Web Principal
+  - type: web
+    name: inspeccion-vehiculos-app
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node index.js
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: DATABASE_URL
+        fromDatabase:
+          name: db-inspecciones
+          property: connectionString
+
+# Base de Datos PostgreSQL
+databases:
+  - name: db-inspecciones
+    plan: free
