@@ -4,43 +4,60 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SafeNode - Inspección Preoperacional</title>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root { --safenode-blue: #004a99; --safenode-green: #28a745; }
+        .bg-primary { background-color: var(--safenode-blue) !important; }
+        .btn-success { background-color: var(--safenode-green); border: none; }
+        .logo-placeholder { max-height: 80px; margin-bottom: 10px; }
+        .card-header { font-size: 1.1rem; text-transform: uppercase; }
+        .table thead { font-size: 0.85rem; }
+    </style>
 </head>
 <body class="bg-light">
     <div class="container py-4">
-        <div class="card shadow-sm mb-4">
+        <div class="card shadow-sm mb-4 border-0">
             <div class="card-body text-center">
-                <h2 class="text-primary">SafeNode S.A.S.</h2>
-                <h5>Inspección Preoperacional y Cargue (03-FOR-07 Rev9)</h5>
+                <img src="https://via.placeholder.com/200x80?text=SafeNode+SAS" alt="Logo SafeNode" class="logo-placeholder">
+                <h3 class="text-primary fw-bold">Gestión de Inspecciones</h3>
+                <p class="text-muted small mb-0">Formato Único: 03-FOR-07 Rev9</p>
             </div>
         </div>
 
         <form id="formInspeccion">
-            <div class="card mb-4">
-                <div class="card-header bg-dark text-white">Datos del Conductor y Vehículo</div>
+            <div class="card mb-4 shadow-sm">
+                <div class="card-header bg-dark text-white font-weight-bold">
+                    <i class="fas fa-truck-moving me-2"></i> Información General
+                </div>
                 <div class="card-body row">
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Nombre del Conductor</label>
-                        <input type="text" id="conductor_nombre" class="form-control" required>
+                        <label class="form-label fw-bold">Conductor</label>
+                        <input type="text" id="conductor_nombre" class="form-control" placeholder="Nombre completo" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Cédula</label>
-                        <input type="text" id="conductor_documento" class="form-control" required>
+                        <label class="form-label fw-bold">Cédula</label>
+                        <input type="text" id="conductor_documento" class="form-control" placeholder="Número de identificación" required>
                     </div>
                     <div class="col-md-4 mb-3">
-                        <label class="form-label">Placa del Vehículo</label>
-                        <input type="text" id="vehiculo_placa" class="form-control" required placeholder="ABC-123">
+                        <label class="form-label fw-bold">Placa</label>
+                        <input type="text" id="vehiculo_placa" class="form-control text-uppercase" placeholder="ABC-123" required>
                     </div>
                 </div>
             </div>
 
             <div id="seccionesInspeccion"></div>
 
-            <div class="d-grid gap-2">
-                <button type="submit" class="btn btn-success btn-lg">Enviar Inspección</button>
+            <div class="d-grid gap-2 mt-5">
+                <button type="submit" class="btn btn-success btn-lg shadow">
+                    <i class="fas fa-paper-plane me-2"></i> Firmar y Enviar Inspección
+                </button>
             </div>
         </form>
+
+        <footer class="text-center mt-5 pb-4 text-muted small">
+            &copy; 2026 SafeNode S.A.S. | Todos los derechos reservados.
+        </footer>
     </div>
 
     <script src="js/main.js"></script>
