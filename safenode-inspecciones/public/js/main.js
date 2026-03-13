@@ -1,7 +1,7 @@
 /**
- * SafeNode S.A.S. - Gestión de Inspecciones Preoperacionales
- * Formato: 03-FOR-07 Rev9
- * Configuración completa de 113 puntos
+ * YEGO ECO-T S.A.S. - Plataforma de Control Logístico
+ * Inspección Preoperacional Formato: 03-FOR-07 Rev9
+ * Configuración completa de 113 puntos con colores corporativos
  */
 
 const categorias = [
@@ -76,20 +76,22 @@ const categorias = [
 
 const renderTabla = () => {
     const contenedor = document.getElementById('seccionesInspeccion');
-    contenedor.innerHTML = ''; // Limpiar antes de renderizar
+    contenedor.innerHTML = ''; 
 
     categorias.forEach((cat) => {
         let html = `
-        <div class="card mb-4 shadow border-0">
-            <div class="card-header bg-primary text-white py-3">
-                <h6 class="m-0 font-weight-bold"><i class="fas fa-clipboard-check me-2"></i>${cat.nombre}</h6>
+        <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6 !important;">
+            <div class="card-header text-white py-3" style="background-color: #6f1ab6 !important;">
+                <h6 class="m-0 font-weight-bold text-uppercase" style="letter-spacing: 1px;">
+                    <i class="fas fa-truck-loading me-2" style="color: #ffc107;"></i>${cat.nombre}
+                </h6>
             </div>
             <div class="card-body p-0">
                 <div class="table-responsive">
                     <table class="table table-hover table-striped mb-0">
-                        <thead class="bg-light text-center small fw-bold">
+                        <thead class="bg-light text-center small fw-bold text-secondary">
                             <tr>
-                                <th class="text-start ps-3" style="width: 55%">Ítem de Inspección</th>
+                                <th class="text-start ps-4" style="width: 55%">ÍTEM DE CONTROL</th>
                                 <th style="width: 60px">C</th>
                                 <th style="width: 60px">NC</th>
                                 <th style="width: 60px">NA</th>
@@ -100,7 +102,7 @@ const renderTabla = () => {
         cat.items.forEach(item => {
             html += `
             <tr>
-                <td class="small align-middle ps-3 text-dark fw-bold">${item}</td>
+                <td class="small align-middle ps-4 text-dark fw-bold">${item}</td>
                 <td class="text-center align-middle">
                     <input type="radio" name="${item}" value="C" checked class="form-check-input">
                 </td>
@@ -118,10 +120,8 @@ const renderTabla = () => {
     });
 };
 
-// Ejecutar renderizado inicial
 renderTabla();
 
-// Envío de datos a Render
 document.getElementById('formInspeccion').addEventListener('submit', async (e) => {
     e.preventDefault();
     
@@ -129,7 +129,8 @@ document.getElementById('formInspeccion').addEventListener('submit', async (e) =
     const originalContent = btn.innerHTML;
     
     btn.disabled = true;
-    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando a SafeNode...';
+    btn.style.backgroundColor = "#5a1494";
+    btn.innerHTML = '<i class="fas fa-circle-notch fa-spin me-2"></i> Procesando en YEGO ECO-T...';
 
     const respuestas = {};
     const radios = e.target.querySelectorAll('input[type="radio"]:checked');
@@ -152,16 +153,17 @@ document.getElementById('formInspeccion').addEventListener('submit', async (e) =
         });
 
         if (response.ok) {
-            alert('✅ Registro Exitoso.\nLa inspección preoperacional ha sido guardada en la base de datos de SafeNode S.A.S.');
+            alert('✅ Registro Exitoso.\nLa inspección de YEGO ECO-T S.A.S. ha sido guardada en la plataforma logística.');
             window.scrollTo(0, 0);
             e.target.reset();
         } else {
-            alert('❌ Error al guardar datos en el servidor.');
+            alert('❌ Error: No se pudo conectar con la base de datos de YEGO.');
         }
     } catch (err) {
-        alert('❌ Error de conexión: Asegúrate de que el servidor de Render esté activo.');
+        alert('❌ Error de red: El servidor de Render no responde.');
     } finally {
         btn.disabled = false;
+        btn.style.backgroundColor = "#6f1ab6";
         btn.innerHTML = originalContent;
     }
 });
