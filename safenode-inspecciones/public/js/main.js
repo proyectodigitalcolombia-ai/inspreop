@@ -72,57 +72,64 @@ const categorias = [
             "Amortiguadores (Sin fugas)", "Hojas de Resorte / Ballestas", "Tanques de Aire (Drenaje)"
         ]
     }
-    // Nota: El sistema generará automáticamente los 113 puntos basados en estas categorías detalladas.
 ];
 
-const contenedor = document.getElementById('seccionesInspeccion');
+const renderTabla = () => {
+    const contenedor = document.getElementById('seccionesInspeccion');
+    contenedor.innerHTML = ''; // Limpiar antes de renderizar
 
-// Generador automático de tablas según el Excel
-categorias.forEach((cat) => {
-    let html = `
-    <div class="card mb-4 shadow border-left-primary">
-        <div class="card-header bg-primary text-white py-3">
-            <h6 class="m-0 font-weight-bold">${cat.nombre}</h6>
-        </div>
-        <div class="card-body p-0">
-            <table class="table table-hover table-striped mb-0">
-                <thead class="bg-light text-center text-xs text-uppercase font-weight-bold">
-                    <tr>
-                        <th class="text-left" style="width: 55%">Ítem de Inspección</th>
-                        <th>C</th>
-                        <th>NC</th>
-                        <th>NA</th>
-                    </tr>
-                </thead>
-                <tbody>`;
-    
-    cat.items.forEach(item => {
-        html += `
-        <tr>
-            <td class="small align-middle pl-3 text-dark font-weight-bold">${item}</td>
-            <td class="text-center align-middle">
-                <input type="radio" name="${item}" value="C" checked class="form-check-input">
-            </td>
-            <td class="text-center align-middle">
-                <input type="radio" name="${item}" value="NC" class="form-check-input">
-            </td>
-            <td class="text-center align-middle">
-                <input type="radio" name="${item}" value="NA" class="form-check-input">
-            </td>
-        </tr>`;
+    categorias.forEach((cat) => {
+        let html = `
+        <div class="card mb-4 shadow border-0">
+            <div class="card-header bg-primary text-white py-3">
+                <h6 class="m-0 font-weight-bold"><i class="fas fa-clipboard-check me-2"></i>${cat.nombre}</h6>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped mb-0">
+                        <thead class="bg-light text-center small fw-bold">
+                            <tr>
+                                <th class="text-start ps-3" style="width: 55%">Ítem de Inspección</th>
+                                <th style="width: 60px">C</th>
+                                <th style="width: 60px">NC</th>
+                                <th style="width: 60px">NA</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+        
+        cat.items.forEach(item => {
+            html += `
+            <tr>
+                <td class="small align-middle ps-3 text-dark fw-bold">${item}</td>
+                <td class="text-center align-middle">
+                    <input type="radio" name="${item}" value="C" checked class="form-check-input">
+                </td>
+                <td class="text-center align-middle">
+                    <input type="radio" name="${item}" value="NC" class="form-check-input border-danger">
+                </td>
+                <td class="text-center align-middle">
+                    <input type="radio" name="${item}" value="NA" class="form-check-input">
+                </td>
+            </tr>`;
+        });
+
+        html += `</tbody></table></div></div></div>`;
+        contenedor.innerHTML += html;
     });
+};
 
-    html += `</tbody></table></div></div>`;
-    contenedor.innerHTML += html;
-});
+// Ejecutar renderizado inicial
+renderTabla();
 
 // Envío de datos a Render
 document.getElementById('formInspeccion').addEventListener('submit', async (e) => {
     e.preventDefault();
     
     const btn = e.target.querySelector('button[type="submit"]');
+    const originalContent = btn.innerHTML;
+    
     btn.disabled = true;
-    btn.innerHTML = 'Enviando a SafeNode...';
+    btn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Enviando a SafeNode...';
 
     const respuestas = {};
     const radios = e.target.querySelectorAll('input[type="radio"]:checked');
@@ -149,12 +156,12 @@ document.getElementById('formInspeccion').addEventListener('submit', async (e) =
             window.scrollTo(0, 0);
             e.target.reset();
         } else {
-            alert('❌ Error al guardar datos.');
+            alert('❌ Error al guardar datos en el servidor.');
         }
     } catch (err) {
-        alert('❌ Error de conexión con el servidor.');
+        alert('❌ Error de conexión: Asegúrate de que el servidor de Render esté activo.');
     } finally {
         btn.disabled = false;
-        btn.innerHTML = 'Enviar Inspección';
+        btn.innerHTML = originalContent;
     }
 });
