@@ -38,6 +38,7 @@
 
         .form-check-input:checked { background-color: var(--yego-purple); border-color: var(--yego-purple); }
         
+        /* Estilo para los interruptores (Switches) */
         .custom-switch { transform: scale(1.3); cursor: pointer; }
     </style>
 </head>
@@ -143,35 +144,35 @@
                 <div class="card-body">
                     <p class="small text-muted mb-3 italic">Capture las 8 fotos obligatorias para el despacho.</p>
                     <div class="row g-3">
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO FRONTAL<input type="file" name="foto_frontal" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_frontal')"></label>
                             <img id="prev_frontal" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL IZQUIERDA<input type="file" name="foto_lat_izq" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_izq')"></label>
                             <img id="prev_lat_izq" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL DERECHA<input type="file" name="foto_lat_der" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_der')"></label>
                             <img id="prev_lat_der" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO TRASERA<input type="file" name="foto_trasera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_trasera')"></label>
                             <img id="prev_trasera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DE LA CARGA<input type="file" name="foto_carga" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_carga')"></label>
                             <img id="prev_carga" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DEL PRECINTO<input type="file" name="foto_precinto" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_precinto')"></label>
                             <img id="prev_precinto" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> KIT CARRETERA<input type="file" name="foto_kit_carretera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_kit_carretera')"></label>
                             <img id="prev_kit_carretera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-3 text-center">
                             <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO BOTIQUÍN<input type="file" name="foto_botiquin" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_botiquin')"></label>
                             <img id="prev_botiquin" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
                         </div>
