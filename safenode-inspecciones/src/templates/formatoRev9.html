@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; font-size: 10px; }
+        .header { text-align: center; border: 1px solid black; padding: 10px; }
+        .table-inspeccion { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .table-inspeccion th, .table-inspeccion td { border: 1px solid black; padding: 4px; }
+        .seccion-titulo { background-color: #e0e0e0; font-weight: bold; }
+        .check { text-align: center; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>INSPECCIÓN DE VEHÍCULOS PRE OPERACIONAL Y CARGUE</h2>
+        <p>Código: 03-FOR-07 | Versión: Rev9</p>
+    </div>
+
+    <table class="table-inspeccion">
+        <tr>
+            <td><strong>Conductor:</strong> {{conductor_nombre}}</td>
+            <td><strong>Placa:</strong> {{vehiculo_placa}}</td>
+            <td><strong>Fecha:</strong> {{fecha}}</td>
+        </tr>
+    </table>
+
+    <table class="table-inspeccion">
+        <tr class="seccion-titulo"><td colspan="3">1. INSPECCIÓN TÉCNICA</td></tr>
+        {{#each respuestas}}
+        <tr>
+            <td>{{this.item}}</td>
+            <td class="check">{{this.estado}}</td>
+            <td>{{this.observacion}}</td>
+        </tr>
+        {{/each}}
+    </table>
+</body>
+</html>
