@@ -51,6 +51,7 @@
     <div class="container pb-5">
         <form id="formInspeccion">
 
+            <!-- INFORMACIÓN GENERAL -->
             <div class="card shadow-sm border-0">
                 <div class="card-header bg-dark text-white py-3">
                     <i class="fas fa-info-circle me-2"></i> Información General
@@ -83,7 +84,7 @@
                         </div>
                         <div class="col-md-2">
                             <label class="form-label fw-bold">Placa</label>
-                            <input type="text" id="vehiculo_placa" class="form-control text-uppercase" placeholder="ABC123" required oninput="this.value = this.value.toUpperCase()">
+                            <input type="text" id="vehiculo_placa" class="form-control text-uppercase" placeholder="ABC123" required>
                         </div>
                         <div class="col-md-4">
                             <label class="form-label fw-bold">Clase de Vehículo</label>
@@ -110,79 +111,285 @@
                 </div>
             </div>
 
-            <div id="seccionesInspeccion"></div>
-
-            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #27ae60;">
-                <div class="card-header text-white py-2" style="background-color: #27ae60;">
-                    <h6 class="m-0 font-weight-bold text-center text-uppercase"><i class="fas fa-camera me-2"></i> REGISTRO FOTOGRÁFICO DE EVIDENCIA</h6>
+            <!-- PARTE 1: INSPECCIÓN CABEZOTE -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 font-weight-bold text-center text-uppercase">Parte 1. INSPECCIÓN CABEZOTE</h6>
                 </div>
-                <div class="card-body">
-                    <p class="small text-muted mb-3 italic">Capture las 8 fotos obligatorias para el despacho.</p>
-                    <div class="row g-3 text-center">
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO FRONTAL<input type="file" name="foto_frontal" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_frontal')"></label>
-                            <img id="prev_frontal" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL IZQUIERDA<input type="file" name="foto_lat_izq" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_izq')"></label>
-                            <img id="prev_lat_izq" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL DERECHA<input type="file" name="foto_lat_der" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_der')"></label>
-                            <img id="prev_lat_der" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO TRASERA<input type="file" name="foto_trasera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_trasera')"></label>
-                            <img id="prev_trasera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DE LA CARGA<input type="file" name="foto_carga" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_carga')"></label>
-                            <img id="prev_carga" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DEL PRECINTO<input type="file" name="foto_precinto" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_precinto')"></label>
-                            <img id="prev_precinto" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> KIT CARRETERA<input type="file" name="foto_kit_carretera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_kit_carretera')"></label>
-                            <img id="prev_kit_carretera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO BOTIQUÍN<input type="file" name="foto_botiquin" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_botiquin')"></label>
-                            <img id="prev_botiquin" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 text-center align-middle">
+                        <thead class="bg-dark text-white small">
+                            <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Llantas direccionales y radiales</td>
+                                <td><input type="radio" name="cab_llantas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_llantas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_llantas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Placas (Frente-Lateral-Techo)</td>
+                                <td><input type="radio" name="cab_placas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_placas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_placas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Defensa o Parachoques</td>
+                                <td><input type="radio" name="cab_defensa" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_defensa" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_defensa" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Compartimientos internos y externos</td>
+                                <td><input type="radio" name="cab_compartimientos" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_compartimientos" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_compartimientos" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Tanques de combustible y soportes</td>
+                                <td><input type="radio" name="cab_tanques" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_tanques" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_tanques" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Cabina (Piso-Silleria-Tapizado-Comando-Indicadores)</td>
+                                <td><input type="radio" name="cab_cabina" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_cabina" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_cabina" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Accesos de Aire</td>
+                                <td><input type="radio" name="cab_aire" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_aire" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_aire" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Verificación visual de la Quinta Rueda y Kingpin</td>
+                                <td><input type="radio" name="cab_quinta" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_quinta" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_quinta" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Puertas (Chapas - Seguros)</td>
+                                <td><input type="radio" name="cab_puertas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_puertas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_puertas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Ventanas y panorámico</td>
+                                <td><input type="radio" name="cab_ventanas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_ventanas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_ventanas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Espejos (retrovisores - parabrisas)</td>
+                                <td><input type="radio" name="cab_espejos" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_espejos" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_espejos" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Aseo General</td>
+                                <td><input type="radio" name="cab_aseo" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="cab_aseo" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="cab_aseo" value="NA" class="form-check-input"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- INTERRUPTOR REMOLQUE -->
+            <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #6f1ab6 0%, #8e44ad 100%);">
+                <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+                    <h6 class="m-0 fw-bold">
+                        <i class="fas fa-link me-2 text-warning"></i> ¿APLICA INSPECCIÓN DE UNIDAD DE REMOLQUE?
+                    </h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input custom-switch" type="checkbox" id="checkRemolque">
                     </div>
                 </div>
             </div>
 
-            <div class="card mb-4 shadow border-0" style="border-left: 6px solid var(--yego-purple);">
-                <div class="card-header bg-light text-dark py-3 text-center">FIRMAS DE RESPONSABILIDAD</div>
-                <div class="card-body row text-center">
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold d-block">Firma Conductor</label>
-                        <canvas id="firmaConductor" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
-                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaConductor')">Limpiar Firma</button>
+            <!-- BLOQUE REMOLQUE (OCULTO POR DEFECTO) -->
+            <div id="bloqueRemolque" style="display: none;">
+                <div class="mb-3 p-3 bg-white border rounded">
+                    <label class="fw-bold small">Número de remolque:</label>
+                    <input type="text" id="n_remolque" class="form-control form-control-sm border-warning">
+                </div>
+
+                <!-- INSPECCIÓN REMOLQUE - ESTRUCTURA -->
+                <div class="card mb-4 shadow border-0" style="border-left: 6px solid #ffc107;">
+                    <div class="card-header text-white py-2" style="background-color: #ffc107;">
+                        <h6 class="m-0 font-weight-bold text-center text-uppercase">INSPECCIÓN REMOLQUE - ESTRUCTURA</h6>
                     </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold d-block">Firma Inspector</label>
-                        <canvas id="firmaInspector" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
-                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaInspector')">Limpiar Firma</button>
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0 text-center align-middle">
+                            <thead class="bg-dark text-white small">
+                                <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Patas mecánicas de soporte</td>
+                                    <td><input type="radio" name="rem_patas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_patas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_patas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Líneas de aire y corriente</td>
+                                    <td><input type="radio" name="rem_lineas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_lineas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_lineas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Carpa - Varillas</td>
+                                    <td><input type="radio" name="rem_carpa" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_carpa" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_carpa" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Defensa trasera</td>
+                                    <td><input type="radio" name="rem_defensa" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_defensa" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_defensa" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Llantas</td>
+                                    <td><input type="radio" name="rem_llantas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_llantas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_llantas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Llanta de repuesto</td>
+                                    <td><input type="radio" name="rem_repuesto" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_repuesto" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_repuesto" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Carrocería</td>
+                                    <td><input type="radio" name="rem_carroceria" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_carroceria" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_carroceria" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Cintas reflectivas</td>
+                                    <td><input type="radio" name="rem_cintas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_cintas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_cintas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Trompos de Seguridad</td>
+                                    <td><input type="radio" name="rem_trompos" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_trompos" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_trompos" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Revisión GPS no autorizados</td>
+                                    <td><input type="radio" name="rem_gps" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="rem_gps" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="rem_gps" value="NA" class="form-check-input"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- INSPECCIÓN REMOLQUE - LUCES -->
+                <div class="card mb-4 shadow border-0" style="border-left: 6px solid #ffc107;">
+                    <div class="card-header text-white py-2" style="background-color: #ffc107;">
+                        <h6 class="m-0 font-weight-bold text-center text-uppercase">INSPECCIÓN REMOLQUE - LUCES</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0 text-center align-middle">
+                            <thead class="bg-dark text-white small">
+                                <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Sistema de luces y pitos</td>
+                                    <td><input type="radio" name="reml_sistema" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_sistema" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_sistema" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces stop</td>
+                                    <td><input type="radio" name="reml_stop" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_stop" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_stop" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces de reversa</td>
+                                    <td><input type="radio" name="reml_reversa" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_reversa" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_reversa" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces de parqueo</td>
+                                    <td><input type="radio" name="reml_parqueo" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_parqueo" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_parqueo" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces laterales</td>
+                                    <td><input type="radio" name="reml_laterales" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_laterales" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_laterales" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces direccionales</td>
+                                    <td><input type="radio" name="reml_direccionales" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_direccionales" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_direccionales" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Pito incluyendo de reversa</td>
+                                    <td><input type="radio" name="reml_pito" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_pito" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_pito" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces laterales del remolque</td>
+                                    <td><input type="radio" name="reml_lat_rem" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_lat_rem" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_lat_rem" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces traseras del remolque</td>
+                                    <td><input type="radio" name="reml_tras_rem" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_tras_rem" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_tras_rem" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Luces principales altas y bajas</td>
+                                    <td><input type="radio" name="reml_principales" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="reml_principales" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="reml_principales" value="NA" class="form-check-input"></td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
 
-            <div class="d-grid gap-2 mt-4">
-                <button type="submit" class="btn btn-yego btn-lg shadow">
-                    <i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL
-                </button>
+            <!-- INTERRUPTOR KIT DE DERRAMES -->
+            <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #e67e22 0%, #d35400 100%);">
+                <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+                    <h6 class="m-0 fw-bold">
+                        <i class="fas fa-exclamation-triangle me-2 text-warning"></i> ¿APLICA KIT DE DERRAMES PARA MERCANCÍAS PELIGROSAS?
+                    </h6>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input custom-switch" type="checkbox" id="checkKitDerrames">
+                    </div>
+                </div>
             </div>
-        </form>
 
-        <footer class="text-center mt-5 text-muted small pb-4">
-            &copy; 2026 YEGO ECO-T S.A.S. | Plataforma de Control Logístico
-        </footer>
-    </div>
-
-    <script type="module" src="/main.js"></script>
-</body>
-</html>
+            <!-- BLOQUE KIT DE DERRAMES (OCULTO POR DEFECTO) -->
+            <div id="bloqueKitDerrames" style="display: none;">
+                <div class="card mb-4 shadow border-0" style="border-left: 6px solid #e67e22;">
+                    <div class="card-header text-white py-2" style="background-color: #e67e22;">
+                        <h6 class="m-0 font-weight-bold text-center text-uppercase">KIT DE DERRAMES</h6>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered mb-0 text-center align-middle">
+                            <thead class="bg-dark text-white small">
+                                <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th>
