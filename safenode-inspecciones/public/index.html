@@ -392,4 +392,443 @@
                     <div class="table-responsive">
                         <table class="table table-bordered mb-0 text-center align-middle">
                             <thead class="bg-dark text-white small">
-                                <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th>
+                                <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Maletín de lona o plástico resistente</td>
+                                    <td><input type="radio" name="kit_maletin" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_maletin" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_maletin" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Chaleco reflectivo</td>
+                                    <td><input type="radio" name="kit_chaleco" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_chaleco" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_chaleco" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Gafas de seguridad</td>
+                                    <td><input type="radio" name="kit_gafas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_gafas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_gafas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Guantes de nitrilo/neopreno</td>
+                                    <td><input type="radio" name="kit_guantes" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_guantes" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_guantes" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Tapabocas con filtro</td>
+                                    <td><input type="radio" name="kit_tapabocas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_tapabocas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_tapabocas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Pala de chispa</td>
+                                    <td><input type="radio" name="kit_pala" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_pala" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_pala" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Bolsas de polietileno (Rojas)</td>
+                                    <td><input type="radio" name="kit_bolsas" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_bolsas" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_bolsas" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Material absorbente</td>
+                                    <td><input type="radio" name="kit_absorbente" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_absorbente" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_absorbente" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Cinta de señalización</td>
+                                    <td><input type="radio" name="kit_cinta" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_cinta" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_cinta" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Masilla epóxica o cuñas</td>
+                                    <td><input type="radio" name="kit_masilla" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_masilla" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_masilla" value="NA" class="form-check-input"></td>
+                                </tr>
+                                <tr>
+                                    <td class="text-start ps-3 small fw-bold">Manual de atención de derrames</td>
+                                    <td><input type="radio" name="kit_manual" value="BUENO" checked class="form-check-input"></td>
+                                    <td><input type="radio" name="kit_manual" value="MALO" class="form-check-input border-danger"></td>
+                                    <td><input type="radio" name="kit_manual" value="NA" class="form-check-input"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- KIT DE CARRETERA -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 text-center fw-bold">KIT DE CARRETERA</h6>
+                </div>
+                <table class="table table-bordered mb-0 text-center small align-middle">
+                    <thead class="bg-dark text-white">
+                        <tr><th class="text-start ps-3">ARTÍCULO</th><th>B</th><th>M</th><th>NA</th><th>VENCIMIENTO</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Botiquín vigente</td>
+                            <td><input type="radio" name="kcar_botiquin" value="B" checked></td>
+                            <td><input type="radio" name="kcar_botiquin" value="M"></td>
+                            <td><input type="radio" name="kcar_botiquin" value="NA"></td>
+                            <td><input type="date" name="ven_botiquin" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Extintores PQS</td>
+                            <td><input type="radio" name="kcar_extintores" value="B" checked></td>
+                            <td><input type="radio" name="kcar_extintores" value="M"></td>
+                            <td><input type="radio" name="kcar_extintores" value="NA"></td>
+                            <td><input type="date" name="ven_extintores" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Conos</td>
+                            <td><input type="radio" name="kcar_conos" value="B" checked></td>
+                            <td><input type="radio" name="kcar_conos" value="M"></td>
+                            <td><input type="radio" name="kcar_conos" value="NA"></td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Señalización vial</td>
+                            <td><input type="radio" name="kcar_senalizacion" value="B" checked></td>
+                            <td><input type="radio" name="kcar_senalizacion" value="M"></td>
+                            <td><input type="radio" name="kcar_senalizacion" value="NA"></td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Gato adecuado</td>
+                            <td><input type="radio" name="kcar_gato" value="B" checked></td>
+                            <td><input type="radio" name="kcar_gato" value="M"></td>
+                            <td><input type="radio" name="kcar_gato" value="NA"></td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Linterna</td>
+                            <td><input type="radio" name="kcar_linterna" value="B" checked></td>
+                            <td><input type="radio" name="kcar_linterna" value="M"></td>
+                            <td><input type="radio" name="kcar_linterna" value="NA"></td>
+                            <td>N/A</td>
+                        </tr>
+                        <tr>
+                            <td class="text-start ps-3 fw-bold">Herramienta básica</td>
+                            <td><input type="radio" name="kcar_herramienta" value="B" checked></td>
+                            <td><input type="radio" name="kcar_herramienta" value="M"></td>
+                            <td><input type="radio" name="kcar_herramienta" value="NA"></td>
+                            <td>N/A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- VERIFICACIÓN BOTIQUÍN -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 font-weight-bold text-center text-uppercase">VERIFICACIÓN BOTIQUÍN</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 text-center align-middle">
+                        <thead class="bg-dark text-white small">
+                            <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Gasas limpias</td>
+                                <td><input type="radio" name="bot_gasas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_gasas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_gasas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Esparadrapo</td>
+                                <td><input type="radio" name="bot_esparadrapo" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_esparadrapo" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_esparadrapo" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Bajalenguas</td>
+                                <td><input type="radio" name="bot_bajalenguas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_bajalenguas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_bajalenguas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Guantes látex</td>
+                                <td><input type="radio" name="bot_guantes" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_guantes" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_guantes" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Vendas</td>
+                                <td><input type="radio" name="bot_vendas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_vendas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_vendas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Solución salina</td>
+                                <td><input type="radio" name="bot_solucion" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_solucion" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_solucion" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Termómetro</td>
+                                <td><input type="radio" name="bot_termometro" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_termometro" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_termometro" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Alcohol</td>
+                                <td><input type="radio" name="bot_alcohol" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_alcohol" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_alcohol" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Pito</td>
+                                <td><input type="radio" name="bot_pito" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_pito" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_pito" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Tijeras</td>
+                                <td><input type="radio" name="bot_tijeras" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_tijeras" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_tijeras" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Tapabocas</td>
+                                <td><input type="radio" name="bot_tapabocas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_tapabocas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_tapabocas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Algodón</td>
+                                <td><input type="radio" name="bot_algodon" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="bot_algodon" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="bot_algodon" value="NA" class="form-check-input"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- VERIFICACIÓN EPP -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 font-weight-bold text-center text-uppercase">VERIFICACIÓN EPP</h6>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0 text-center align-middle">
+                        <thead class="bg-dark text-white small">
+                            <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Casco de seguridad</td>
+                                <td><input type="radio" name="epp_casco" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_casco" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_casco" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Monogafas</td>
+                                <td><input type="radio" name="epp_monogafas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_monogafas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_monogafas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Tapabocas</td>
+                                <td><input type="radio" name="epp_tapabocas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_tapabocas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_tapabocas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Tapaoídos</td>
+                                <td><input type="radio" name="epp_tapaoidos" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_tapaoidos" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_tapaoidos" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Guantes vaqueta</td>
+                                <td><input type="radio" name="epp_guantes" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_guantes" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_guantes" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Botas seguridad</td>
+                                <td><input type="radio" name="epp_botas" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_botas" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_botas" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Camisa Jean</td>
+                                <td><input type="radio" name="epp_camisa" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_camisa" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_camisa" value="NA" class="form-check-input"></td>
+                            </tr>
+                            <tr>
+                                <td class="text-start ps-3 small fw-bold">Chaleco reflectivo</td>
+                                <td><input type="radio" name="epp_chaleco" value="BUENO" checked class="form-check-input"></td>
+                                <td><input type="radio" name="epp_chaleco" value="MALO" class="form-check-input border-danger"></td>
+                                <td><input type="radio" name="epp_chaleco" value="NA" class="form-check-input"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- REQUISITOS PARA EL DESPACHO -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 text-center fw-bold">REQUISITOS PARA EL DESPACHO</h6>
+                </div>
+                <table class="table table-bordered mb-0 small">
+                    <thead class="bg-dark text-white text-center">
+                        <tr><th>ARTÍCULO</th><th>VALIDACIÓN</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold ps-3">Requiere unidad reefer</td>
+                            <td class="p-2"><input type="text" name="req_reefer" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Punto de cargue</td>
+                            <td class="p-2"><input type="text" name="req_punto_cargue" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Temperatura requerida</td>
+                            <td class="p-2"><input type="text" name="req_temperatura" class="form-control form-control-sm"></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">ARL, EPS y AFP impresa</td>
+                            <td class="p-2"><select name="req_arl" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Rótulos UN (4 lados)</td>
+                            <td class="p-2"><select name="req_rotulos" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Placa UN (5 lados)</td>
+                            <td class="p-2"><select name="req_placa_un" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Tarjeta de emergencia</td>
+                            <td class="p-2"><select name="req_tarjeta" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Plan de Ruta</td>
+                            <td class="p-2"><select name="req_plan_ruta" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Alarma de retroceso</td>
+                            <td class="p-2"><select name="req_alarma" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Capacitación Contingencias</td>
+                            <td class="p-2"><select name="req_capacitacion" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold ps-3">Curso Mercancía Peligrosa (60h)</td>
+                            <td class="p-2"><select name="req_curso" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- DOCUMENTOS DE CARGA -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+                <div class="card-header text-white py-2" style="background-color: #6f1ab6;">
+                    <h6 class="m-0 text-center fw-bold">LISTA DE CHEQUEO DOCUMENTOS DE CARGA</h6>
+                </div>
+                <table class="table table-bordered mb-0">
+                    <tr><td class="ps-3 fw-bold small">Remesa de carga</td><td><select name="doc_remesa" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                    <tr><td class="ps-3 fw-bold small">Manifiesto</td><td><select name="doc_manifiesto" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                    <tr><td class="ps-3 fw-bold small">Facturas</td><td><select name="doc_facturas" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                    <tr><td class="ps-3 fw-bold small">Planilla despacho</td><td><select name="doc_planilla" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                    <tr><td class="ps-3 fw-bold small">Tarjetas emergencia</td><td><select name="doc_tarjetas" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                    <tr><td class="ps-3 fw-bold small">Orden de cargue</td><td><select name="doc_orden" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>
+                </table>
+            </div>
+
+            <!-- REGISTRO FOTOGRÁFICO -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #27ae60;">
+                <div class="card-header text-white py-2" style="background-color: #27ae60;">
+                    <h6 class="m-0 font-weight-bold text-center text-uppercase"><i class="fas fa-camera me-2"></i> REGISTRO FOTOGRÁFICO DE EVIDENCIA</h6>
+                </div>
+                <div class="card-body">
+                    <p class="small text-muted mb-3 italic">Capture las 8 fotos obligatorias para el despacho.</p>
+                    <div class="row g-3 text-center">
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO FRONTAL<input type="file" name="foto_frontal" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_frontal')"></label>
+                            <img id="prev_frontal" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL IZQUIERDA<input type="file" name="foto_lat_izq" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_izq')"></label>
+                            <img id="prev_lat_izq" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL DERECHA<input type="file" name="foto_lat_der" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_der')"></label>
+                            <img id="prev_lat_der" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO TRASERA<input type="file" name="foto_trasera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_trasera')"></label>
+                            <img id="prev_trasera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DE LA CARGA<input type="file" name="foto_carga" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_carga')"></label>
+                            <img id="prev_carga" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DEL PRECINTO<input type="file" name="foto_precinto" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_precinto')"></label>
+                            <img id="prev_precinto" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> KIT CARRETERA<input type="file" name="foto_kit_carretera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_kit_carretera')"></label>
+                            <img id="prev_kit_carretera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO BOTIQUÍN<input type="file" name="foto_botiquin" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_botiquin')"></label>
+                            <img id="prev_botiquin" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- FIRMAS -->
+            <div class="card mb-4 shadow border-0" style="border-left: 6px solid var(--yego-purple);">
+                <div class="card-header bg-light text-dark py-3 text-center">FIRMAS DE RESPONSABILIDAD</div>
+                <div class="card-body row text-center">
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold d-block">Firma Conductor</label>
+                        <canvas id="firmaConductor" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
+                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaConductor')">Limpiar Firma</button>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="fw-bold d-block">Firma Inspector</label>
+                        <canvas id="firmaInspector" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
+                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaInspector')">Limpiar Firma</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BOTÓN DE ENVÍO -->
+            <div class="d-grid gap-2 mt-4">
+                <button type="submit" class="btn btn-yego btn-lg shadow">
+                    <i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL
+                </button>
+            </div>
+        </form>
+
+        <footer class="text-center mt-5 text-muted small pb-4">
+            &copy; 2026 YEGO ECO-T S.A.S. | Plataforma de Control Logístico
+        </footer>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+</body>
+</html>
