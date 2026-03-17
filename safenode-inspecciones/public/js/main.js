@@ -91,7 +91,6 @@ const renderizarTodo = () => {
 
     contenedor.innerHTML += generarTablaEstandar("Parte 1. INSPECCIÓN CABEZOTE", itemsCabezote, "cab");
 
-    // INTERRUPTORES - Deben aparecer justo después de PARTE 1
     contenedor.innerHTML += `
     <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #6f1ab6 0%, #8e44ad 100%);">
         <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
@@ -164,8 +163,6 @@ const renderizarTodo = () => {
         </table>
     </div>`;
 
-    // --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) ---
-
     document.getElementById('checkKitDerrames').addEventListener('change', function() {
         const div = document.getElementById('bloqueKitDerrames');
         div.style.display = this.checked ? 'block' : 'none';
@@ -188,7 +185,6 @@ const renderizarTodo = () => {
     });
 };
 
-// --- 4. FIRMAS DIGITALES ---
 const configurarFirma = (id) => {
     const canvas = document.getElementById(id);
     if(!canvas) return;
@@ -227,7 +223,6 @@ window.previsualizar = (input, prevId) => {
     }
 };
 
-// --- 5. INICIALIZACIÓN Y ENVÍO ---
 document.addEventListener('DOMContentLoaded', () => {
     renderizarTodo();
     configurarFirma('firmaConductor');
