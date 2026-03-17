@@ -227,17 +227,20 @@ document.addEventListener('DOMContentLoaded', () => {
     renderizarTodo();
     configurarFirma('firmaConductor');
     configurarFirma('firmaInspector');
-});
 
-document.getElementById('formInspeccion').addEventListener('submit', async (e) => {
-    e.preventDefault();
-    const btn = e.target.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.innerHTML = 'Enviando a YEGO ECO-T...';
+    const form = document.getElementById('formInspeccion');
+    if (form) {
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            btn.disabled = true;
+            btn.innerHTML = 'Enviando a YEGO ECO-T...';
 
-    alert('Inspección de YEGO ECO-T guardada con éxito.');
-    window.scrollTo(0,0);
-    e.target.reset();
-    btn.disabled = false;
-    btn.innerHTML = '<i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL';
+            alert('Inspección de YEGO ECO-T guardada con éxito.');
+            window.scrollTo(0,0);
+            e.target.reset();
+            btn.disabled = false;
+            btn.innerHTML = '<i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL';
+        });
+    }
 });
