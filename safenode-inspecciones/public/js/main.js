@@ -88,11 +88,36 @@ const generarTablaEstandar = (titulo, items, prefijo, color = "#6f1ab6") => {
 const renderizarTodo = () => {
     const contenedor = document.getElementById('seccionesInspeccion');
     contenedor.innerHTML = '';
-    
-    // 1. Cabezote
+
     contenedor.innerHTML += generarTablaEstandar("Parte 1. INSPECCIÓN CABEZOTE", itemsCabezote, "cab");
 
-    // 2. Kit Carretera con Fechas
+    // INTERRUPTORES - Deben aparecer justo después de PARTE 1
+    contenedor.innerHTML += `
+    <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #6f1ab6 0%, #8e44ad 100%);">
+        <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+            <h6 class="m-0 fw-bold">
+                <i class="fas fa-link me-2 text-warning"></i> ¿APLICA INSPECCIÓN DE UNIDAD DE REMOLQUE?
+            </h6>
+            <div class="form-check form-switch">
+                <input class="form-check-input custom-switch" type="checkbox" id="checkRemolque">
+            </div>
+        </div>
+    </div>
+    <div id="bloqueRemolque" style="display: none;"></div>
+
+    <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #e67e22 0%, #d35400 100%);">
+        <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+            <h6 class="m-0 fw-bold">
+                <i class="fas fa-exclamation-triangle me-2 text-warning"></i> ¿APLICA KIT DE DERRAMES PARA MERCANCÍAS PELIGROSAS?
+            </h6>
+            <div class="form-check form-switch">
+                <input class="form-check-input custom-switch" type="checkbox" id="checkKitDerrames">
+            </div>
+        </div>
+    </div>
+    <div id="bloqueKitDerrames" style="display: none;"></div>
+    `;
+
     let htmlKit = `
     <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
         <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">KIT DE CARRETERA</h6></div>
@@ -112,11 +137,9 @@ const renderizarTodo = () => {
     </div>`;
     contenedor.innerHTML += htmlKit;
 
-    // 3. Botiquín, EPP y Requisitos
     contenedor.innerHTML += generarTablaEstandar("VERIFICACIÓN BOTIQUÍN", itemsBotiquin, "bot");
     contenedor.innerHTML += generarTablaEstandar("VERIFICACIÓN EPP", itemsEPP, "epp");
 
-    // 4. Requisitos Despacho
     let htmlDesp = `
     <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
         <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">REQUISITOS PARA EL DESPACHO</h6></div>
@@ -133,7 +156,6 @@ const renderizarTodo = () => {
     </div>`;
     contenedor.innerHTML += htmlDesp;
 
-    // 5. Documentos Carga
     contenedor.innerHTML += `
     <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
         <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">LISTA DE CHEQUEO DOCUMENTOS DE CARGA</h6></div>
@@ -141,30 +163,30 @@ const renderizarTodo = () => {
             ${docsCarga.map(d => `<tr><td class="ps-3 fw-bold small">${d}</td><td><select name="doc_${d}" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>`).join('')}
         </table>
     </div>`;
+
+    // --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) - Ahora que los elementos existen ---
+
+    document.getElementById('checkKitDerrames').addEventListener('change', function() {
+        const div = document.getElementById('bloqueKitDerrames');
+        div.style.display = this.checked ? 'block' : 'none';
+        if(this.checked) div.innerHTML = generarTablaEstandar("KIT DE DERRAMES", itemsKitDerrames, "kit", "#e67e22");
+    });
+
+    document.getElementById('checkRemolque').addEventListener('change', function() {
+        const div = document.getElementById('bloqueRemolque');
+        div.style.display = this.checked ? 'block' : 'none';
+        if(this.checked) {
+            let htmlRem = generarTablaEstandar("INSPECCIÓN REMOLQUE - ESTRUCTURA", itemsRemolqueEstructura, "rem_e", "#ffc107");
+            htmlRem += generarTablaEstandar("INSPECCIÓN REMOLQUE - LUCES", itemsRemolqueLuces, "rem_l", "#ffc107");
+            div.innerHTML = `
+                <div class="mb-3 p-3 bg-white border rounded">
+                    <label class="fw-bold small">Número de remolque:</label>
+                    <input type="text" id="n_remolque" class="form-control form-control-sm border-warning">
+                </div>
+                ${htmlRem}`;
+        }
+    });
 };
-
-// --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) ---
-
-document.getElementById('checkKitDerrames').addEventListener('change', function() {
-    const div = document.getElementById('bloqueKitDerrames');
-    div.style.display = this.checked ? 'block' : 'none';
-    if(this.checked) div.innerHTML = generarTablaEstandar("KIT DE DERRAMES", itemsKitDerrames, "kit", "#e67e22");
-});
-
-document.getElementById('checkRemolque').addEventListener('change', function() {
-    const div = document.getElementById('bloqueRemolque');
-    div.style.display = this.checked ? 'block' : 'none';
-    if(this.checked) {
-        let htmlRem = generarTablaEstandar("INSPECCIÓN REMOLQUE - ESTRUCTURA", itemsRemolqueEstructura, "rem_e", "#ffc107");
-        htmlRem += generarTablaEstandar("INSPECCIÓN REMOLQUE - LUCES", itemsRemolqueLuces, "rem_l", "#ffc107");
-        div.innerHTML = `
-            <div class="mb-3 p-3 bg-white border rounded">
-                <label class="fw-bold small">Número de remolque:</label>
-                <input type="text" id="n_remolque" class="form-control form-control-sm border-warning">
-            </div>
-            ${htmlRem}`;
-    }
-});
 
 // --- 4. FIRMAS DIGITALES ---
 const configurarFirma = (id) => {
@@ -192,6 +214,19 @@ const configurarFirma = (id) => {
 
 window.limpiarFirma = (id) => { const c = document.getElementById(id); c.getContext('2d').clearRect(0,0,c.width,c.height); };
 
+window.previsualizar = (input, prevId) => {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.getElementById(prevId);
+            img.src = e.target.result;
+            img.classList.remove('d-none');
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
 // --- 5. INICIALIZACIÓN Y ENVÍO ---
 document.addEventListener('DOMContentLoaded', () => {
     renderizarTodo();
@@ -205,10 +240,9 @@ document.getElementById('formInspeccion').addEventListener('submit', async (e) =
     btn.disabled = true;
     btn.innerHTML = 'Enviando a YEGO ECO-T...';
 
-    // Captura de datos... (Lógica de envío similar a las anteriores)
-    alert('✅ Inspección de YEGO ECO-T guardada con éxito.');
+    alert('Inspección de YEGO ECO-T guardada con éxito.');
     window.scrollTo(0,0);
     e.target.reset();
     btn.disabled = false;
-    btn.innerHTML = 'Gestionar Inspección';
+    btn.innerHTML = '<i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL';
 });
