@@ -1,188 +1,246 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YEGO ECO-T - Inspección Preoperacional</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        :root {
-            --yego-purple: #6f1ab6;
-            --yego-yellow: #ffc107;
-            --yego-bg: #f8f9fa;
-        }
+/**
+ * YEGO ECO-T S.A.S. - PLATAFORMA DE CONTROL LOGÍSTICO
+ * Formato Consolidado: 03-FOR-07 Rev9
+ * Versión Final con todos los bloques integrados
+ */
 
-        body { background-color: var(--yego-bg); font-family: 'Segoe UI', sans-serif; }
+// --- 1. CONFIGURACIÓN DE ÍTEMS POR BLOQUE ---
+const itemsCabezote = [
+    "Llantas direccionales y radiales", "Placas (Frente-Lateral-Techo)", "Defensa o Parachoques",
+    "Compartimientos internos y externos", "Tanques de combustible y soportes",
+    "Cabina (Piso-Silleria-Tapizado-Comando-Indicadores)", "Accesos de Aire",
+    "Verificación visual de la Quinta Rueda y Kingpin", "Puertas (Chapas - Seguros)",
+    "Ventanas y panorámico", "Espejos (retrovisores - parabrisas)", "Aseo General"
+];
+// --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) ---
 
-        .header-yego {
-            background-color: var(--yego-purple);
-            color: white;
-            border-bottom: 5px solid var(--yego-yellow);
-            padding: 20px 0;
-            margin-bottom: 30px;
-        }
+document.getElementById('checkKitDerrames').addEventListener('change', function() {
+    const div = document.getElementById('bloqueKitDerrames');
+    div.style.display = this.checked ? 'block' : 'none';
+    if(this.checked) div.innerHTML = generarTablaEstandar("KIT DE DERRAMES", itemsKitDerrames, "kit", "#e67e22");
+});
 
-        .card { border: none; border-radius: 15px; margin-bottom: 20px; }
-        .card-header { font-weight: bold; text-transform: uppercase; }
-
-        .btn-yego {
-            background-color: var(--yego-purple);
-            color: white;
-            border-radius: 50px;
-            font-weight: bold;
-            padding: 12px;
-            transition: 0.3s;
-        }
-        .btn-yego:hover { background-color: #5a1494; color: var(--yego-yellow); }
-
-        .form-check-input:checked { background-color: var(--yego-purple); border-color: var(--yego-purple); }
-
-        .custom-switch { transform: scale(1.3); cursor: pointer; }
-    </style>
-</head>
-<body>
-
-    <header class="header-yego text-center shadow">
-        <h2 class="fw-bold">YEGO ECO-T S.A.S.</h2>
-        <p class="mb-0 small">Formato: 03-FOR-07 Rev9 | Control Logístico</p>
-    </header>
-
-    <div class="container pb-5">
-        <form id="formInspeccion">
-
-            <div class="card shadow-sm border-0">
-                <div class="card-header bg-dark text-white py-3">
-                    <i class="fas fa-info-circle me-2"></i> Información General
-                </div>
-                <div class="card-body">
-                    <div class="row g-3">
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">Manifiesto</label>
-                            <input type="text" id="manifiesto" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">Fecha</label>
-                            <input type="date" id="fecha" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Nombre del Conductor</label>
-                            <input type="text" id="conductor_nombre" class="form-control" required>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">Tipo de Documento</label>
-                            <select id="tipo_documento" class="form-select">
-                                <option>Cédula de Ciudadanía</option>
-                                <option>Cédula de Extranjería</option>
-                                <option>PPT</option>
-                            </select>
-                        </div>
-                        <div class="col-md-3">
-                            <label class="form-label fw-bold">N° Documento</label>
-                            <input type="text" id="conductor_documento" class="form-control" required>
-                        </div>
-                        <div class="col-md-2">
-                            <label class="form-label fw-bold">Placa</label>
-                            <input type="text" id="vehiculo_placa" class="form-control text-uppercase" placeholder="ABC123" required oninput="this.value = this.value.toUpperCase()">
-                        </div>
-                        <div class="col-md-4">
-                            <label class="form-label fw-bold">Clase de Vehículo</label>
-                            <select id="clase_vehiculo" class="form-select">
-                                <option>Turbo</option>
-                                <option>Sencillo</option>
-                                <option>Doble Troque</option>
-                                <option>Camioneta</option>
-                            </select>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Kilometraje</label>
-                            <input type="number" id="kilometraje" class="form-control" required>
-                        </div>
-                        <div class="col-md-6">
-                            <label class="form-label fw-bold">Modalidad</label>
-                            <select id="modalidad" class="form-select">
-                                <option>Urbano</option>
-                                <option>Nacional</option>
-                                <option>Especial</option>
-                            </select>
-                        </div>
-                    </div>
-                </div>
+document.getElementById('checkRemolque').addEventListener('change', function() {
+    const div = document.getElementById('bloqueRemolque');
+    div.style.display = this.checked ? 'block' : 'none';
+    if(this.checked) {
+        let htmlRem = generarTablaEstandar("INSPECCIÓN REMOLQUE - ESTRUCTURA", itemsRemolqueEstructura, "rem_e", "#ffc107");
+        htmlRem += generarTablaEstandar("INSPECCIÓN REMOLQUE - LUCES", itemsRemolqueLuces, "rem_l", "#ffc107");
+        div.innerHTML = `
+            <div class="mb-3 p-3 bg-white border rounded">
+                <label class="fw-bold small">Número de remolque:</label>
+                <input type="text" id="n_remolque" class="form-control form-control-sm border-warning">
             </div>
+            ${htmlRem}`;
+    }
+});
+const itemsKitDerrames = [
+    "Maletín de lona o plástico resistente", "Chaleco reflectivo", "Gafas de seguridad",
+    "Guantes de nitrilo/neopreno", "Tapabocas con filtro", "Pala de chispa",
+    "Bolsas de polietileno (Rojas)", "Material absorbente", "Cinta de señalización",
+    "Masilla epóxica o cuñas", "Manual de atención de derrames"
+];
 
-            <div id="seccionesInspeccion"></div>
+const itemsRemolqueEstructura = [
+    "Patas mecánicas de soporte", "Líneas de aire y corriente", "Carpa - Varillas",
+    "Defensa trasera", "Llantas", "Llanta de repuesto", "Carrocería",
+    "Cintas reflectivas", "Trompos de Seguridad", "Revisión GPS no autorizados"
+];
 
-            <div class="card mb-4 shadow border-0" style="border-left: 6px solid #27ae60;">
-                <div class="card-header text-white py-2" style="background-color: #27ae60;">
-                    <h6 class="m-0 font-weight-bold text-center text-uppercase"><i class="fas fa-camera me-2"></i> REGISTRO FOTOGRÁFICO DE EVIDENCIA</h6>
-                </div>
-                <div class="card-body">
-                    <p class="small text-muted mb-3 italic">Capture las 8 fotos obligatorias para el despacho.</p>
-                    <div class="row g-3 text-center">
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO FRONTAL<input type="file" name="foto_frontal" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_frontal')"></label>
-                            <img id="prev_frontal" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL IZQUIERDA<input type="file" name="foto_lat_izq" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_izq')"></label>
-                            <img id="prev_lat_izq" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> LATERAL DERECHA<input type="file" name="foto_lat_der" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_lat_der')"></label>
-                            <img id="prev_lat_der" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO TRASERA<input type="file" name="foto_trasera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_trasera')"></label>
-                            <img id="prev_trasera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DE LA CARGA<input type="file" name="foto_carga" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_carga')"></label>
-                            <img id="prev_carga" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO DEL PRECINTO<input type="file" name="foto_precinto" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_precinto')"></label>
-                            <img id="prev_precinto" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> KIT CARRETERA<input type="file" name="foto_kit_carretera" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_kit_carretera')"></label>
-                            <img id="prev_kit_carretera" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                        <div class="col-6 col-md-3">
-                            <label class="btn btn-outline-dark w-100 py-3 small"><i class="fas fa-camera d-block mb-1"></i> FOTO BOTIQUÍN<input type="file" name="foto_botiquin" accept="image/*" capture="camera" class="d-none" onchange="previsualizar(this, 'prev_botiquin')"></label>
-                            <img id="prev_botiquin" class="img-thumbnail mt-2 d-none" style="height: 100px; width: 100%; object-fit: cover;">
-                        </div>
-                    </div>
-                </div>
+const itemsRemolqueLuces = [
+    "Sistema de luces y pitos", "Luces stop", "Luces de reversa", "Luces de parqueo",
+    "Luces laterales", "Luces direccionales", "Pito incluyendo de reversa",
+    "Luces laterales del remolque", "Luces traseras del remolque", "Luces principales altas y bajas"
+];
+
+const itemsKitCarretera = [
+    { n: "Botiquín vigente", f: true }, { n: "Extintores PQS", f: true },
+    { n: "Conos", f: false }, { n: "Señalización vial", f: false },
+    { n: "Gato adecuado", f: false }, { n: "Linterna", f: false }, { n: "Herramienta básica", f: false }
+];
+
+const itemsBotiquin = [
+    "Gasas limpias", "Esparadrapo", "Bajalenguas", "Guantes látex", "Vendas",
+    "Solución salina", "Termómetro", "Alcohol", "Pito", "Tijeras", "Tapabocas", "Algodón"
+];
+
+const itemsEPP = [
+    "Casco de seguridad", "Monogafas", "Tapabocas", "Tapaoídos", "Guantes vaqueta", "Botas seguridad", "Camisa Jean", "Chaleco reflectivo"
+];
+
+const requisitosDespacho = [
+    { n: "Requiere unidad reefer", t: "check" }, { n: "Punto de cargue", t: "text" },
+    { n: "Temperatura requerida", t: "text" }, { n: "ARL, EPS y AFP impresa", t: "check" },
+    { n: "Rótulos UN (4 lados)", t: "check" }, { n: "Placa UN (5 lados)", t: "check" },
+    { n: "Tarjeta de emergencia", t: "check" }, { n: "Plan de Ruta", t: "check" },
+    { n: "Alarma de retroceso", t: "check" }, { n: "Capacitación Contingencias", t: "check" },
+    { n: "Curso Mercancía Peligrosa (60h)", t: "check" }
+];
+
+const docsCarga = ["Remesa de carga", "Manifiesto", "Facturas", "Planilla despacho", "Tarjetas emergencia", "Orden de cargue"];
+
+// --- 2. FUNCIONES DE RENDERIZADO ---
+
+const generarTablaEstandar = (titulo, items, prefijo, color = "#6f1ab6") => {
+    return `
+    <div class="card mb-4 shadow border-0" style="border-left: 6px solid ${color};">
+        <div class="card-header text-white py-2" style="background-color: ${color};">
+            <h6 class="m-0 font-weight-bold text-center text-uppercase">${titulo}</h6>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-bordered mb-0 text-center align-middle">
+                <thead class="bg-dark text-white small">
+                    <tr><th class="text-start ps-3" style="width: 50%">ARTÍCULO</th><th>BUENO</th><th>MALO</th><th>NA</th></tr>
+                </thead>
+                <tbody>
+                    ${items.map(item => `
+                        <tr>
+                            <td class="text-start ps-3 small fw-bold">${item}</td>
+                            <td><input type="radio" name="${prefijo}_${item}" value="BUENO" checked class="form-check-input"></td>
+                            <td><input type="radio" name="${prefijo}_${item}" value="MALO" class="form-check-input border-danger"></td>
+                            <td><input type="radio" name="${prefijo}_${item}" value="NA" class="form-check-input"></td>
+                        </tr>`).join('')}
+                </tbody>
+            </table>
+        </div>
+    </div>`;
+};
+
+const renderizarTodo = () => {
+    const contenedor = document.getElementById('seccionesInspeccion');
+    contenedor.innerHTML = '';
+
+    contenedor.innerHTML += generarTablaEstandar("Parte 1. INSPECCIÓN CABEZOTE", itemsCabezote, "cab");
+
+    // INTERRUPTORES - Deben aparecer justo después de PARTE 1
+    contenedor.innerHTML += `
+    <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #6f1ab6 0%, #8e44ad 100%);">
+        <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+            <h6 class="m-0 fw-bold">
+                <i class="fas fa-link me-2 text-warning"></i> ¿APLICA INSPECCIÓN DE UNIDAD DE REMOLQUE?
+            </h6>
+            <div class="form-check form-switch">
+                <input class="form-check-input custom-switch" type="checkbox" id="checkRemolque">
             </div>
-
-            <div class="card mb-4 shadow border-0" style="border-left: 6px solid var(--yego-purple);">
-                <div class="card-header bg-light text-dark py-3 text-center">FIRMAS DE RESPONSABILIDAD</div>
-                <div class="card-body row text-center">
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold d-block">Firma Conductor</label>
-                        <canvas id="firmaConductor" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
-                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaConductor')">Limpiar Firma</button>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label class="fw-bold d-block">Firma Inspector</label>
-                        <canvas id="firmaInspector" class="border rounded bg-white w-100" style="height: 150px; cursor: crosshair;"></canvas>
-                        <button type="button" class="btn btn-sm btn-outline-secondary mt-2" onclick="limpiarFirma('firmaInspector')">Limpiar Firma</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="d-grid gap-2 mt-4">
-                <button type="submit" class="btn btn-yego btn-lg shadow">
-                    <i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL
-                </button>
-            </div>
-        </form>
-
-        <footer class="text-center mt-5 text-muted small pb-4">
-            &copy; 2026 YEGO ECO-T S.A.S. | Plataforma de Control Logístico
-        </footer>
+        </div>
     </div>
+    <div id="bloqueRemolque" style="display: none;"></div>
 
-    <script src="main.js"></script>
-</body>
-</html>
+    <div class="card mb-4 shadow border-0" style="background: linear-gradient(90deg, #e67e22 0%, #d35400 100%);">
+        <div class="card-body d-flex justify-content-between align-items-center text-white py-3">
+            <h6 class="m-0 fw-bold">
+                <i class="fas fa-exclamation-triangle me-2 text-warning"></i> ¿APLICA KIT DE DERRAMES PARA MERCANCÍAS PELIGROSAS?
+            </h6>
+            <div class="form-check form-switch">
+                <input class="form-check-input custom-switch" type="checkbox" id="checkKitDerrames">
+            </div>
+        </div>
+    </div>
+    <div id="bloqueKitDerrames" style="display: none;"></div>
+    `;
+
+    let htmlKit = `
+    <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+        <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">KIT DE CARRETERA</h6></div>
+        <table class="table table-bordered mb-0 text-center small align-middle">
+            <thead class="bg-dark text-white"><tr><th class="text-start ps-3">ARTÍCULO</th><th>B</th><th>M</th><th>NA</th><th>VENCIMIENTO</th></tr></thead>
+            <tbody>
+                ${itemsKitCarretera.map(i => `
+                <tr>
+                    <td class="text-start ps-3 fw-bold">${i.n}</td>
+                    <td><input type="radio" name="kcar_${i.n}" value="B" checked></td>
+                    <td><input type="radio" name="kcar_${i.n}" value="M"></td>
+                    <td><input type="radio" name="kcar_${i.n}" value="NA"></td>
+                    <td>${i.f ? `<input type="date" name="ven_${i.n}" class="form-control form-control-sm">` : 'N/A'}</td>
+                </tr>`).join('')}
+            </tbody>
+        </table>
+    </div>`;
+    contenedor.innerHTML += htmlKit;
+
+    contenedor.innerHTML += generarTablaEstandar("VERIFICACIÓN BOTIQUÍN", itemsBotiquin, "bot");
+    contenedor.innerHTML += generarTablaEstandar("VERIFICACIÓN EPP", itemsEPP, "epp");
+
+    let htmlDesp = `
+    <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+        <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">REQUISITOS PARA EL DESPACHO</h6></div>
+        <table class="table table-bordered mb-0 small">
+            <thead class="bg-dark text-white text-center"><tr><th>ARTÍCULO</th><th>VALIDACIÓN</th></tr></thead>
+            <tbody>
+                ${requisitosDespacho.map(r => `
+                <tr>
+                    <td class="fw-bold ps-3">${r.n}</td>
+                    <td class="p-2">${r.t === 'check' ? `<select name="req_${r.n}" class="form-select form-select-sm"><option>CUMPLE</option><option>NO CUMPLE</option></select>` : `<input type="text" name="req_${r.n}" class="form-control form-control-sm">`}</td>
+                </tr>`).join('')}
+            </tbody>
+        </table>
+    </div>`;
+    contenedor.innerHTML += htmlDesp;
+
+    contenedor.innerHTML += `
+    <div class="card mb-4 shadow border-0" style="border-left: 6px solid #6f1ab6;">
+        <div class="card-header text-white py-2" style="background-color: #6f1ab6;"><h6 class="m-0 text-center fw-bold">LISTA DE CHEQUEO DOCUMENTOS DE CARGA</h6></div>
+        <table class="table table-bordered mb-0">
+            ${docsCarga.map(d => `<tr><td class="ps-3 fw-bold small">${d}</td><td><select name="doc_${d}" class="form-select form-select-sm"><option>SÍ</option><option>NO</option></select></td></tr>`).join('')}
+        </table>
+    </div>`;
+};
+
+// --- 4. FIRMAS DIGITALES ---
+const configurarFirma = (id) => {
+    const canvas = document.getElementById(id);
+    if(!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let drawing = false;
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+
+    const getPos = (e) => {
+        const r = canvas.getBoundingClientRect();
+        const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+        const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+        return { x: clientX - r.left, y: clientY - r.top };
+    };
+
+    const start = (e) => { drawing = true; ctx.beginPath(); const p = getPos(e); ctx.moveTo(p.x, p.y); };
+    const move = (e) => { if(!drawing) return; e.preventDefault(); const p = getPos(e); ctx.lineTo(p.x, p.y); ctx.stroke(); };
+    const stop = () => drawing = false;
+
+    canvas.addEventListener('mousedown', start); canvas.addEventListener('mousemove', move); window.addEventListener('mouseup', stop);
+    canvas.addEventListener('touchstart', start); canvas.addEventListener('touchmove', move); canvas.addEventListener('touchend', stop);
+};
+
+window.limpiarFirma = (id) => { const c = document.getElementById(id); c.getContext('2d').clearRect(0,0,c.width,c.height); };
+
+window.previsualizar = (input, prevId) => {
+    const file = input.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            const img = document.getElementById(prevId);
+            img.src = e.target.result;
+            img.classList.remove('d-none');
+        };
+        reader.readAsDataURL(file);
+    }
+};
+
+// --- 5. INICIALIZACIÓN Y ENVÍO ---
+document.addEventListener('DOMContentLoaded', () => {
+    renderizarTodo();
+    configurarFirma('firmaConductor');
+    configurarFirma('firmaInspector');
+});
+
+document.getElementById('formInspeccion').addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const btn = e.target.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.innerHTML = 'Enviando a YEGO ECO-T...';
+
+    alert('Inspección de YEGO ECO-T guardada con éxito.');
+    window.scrollTo(0,0);
+    e.target.reset();
+    btn.disabled = false;
+    btn.innerHTML = '<i class="fas fa-save me-2"></i> GESTIONAR INSPECCIÓN FINAL';
+});
