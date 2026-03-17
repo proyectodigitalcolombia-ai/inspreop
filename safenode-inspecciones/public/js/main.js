@@ -164,7 +164,7 @@ const renderizarTodo = () => {
         </table>
     </div>`;
 
-    // --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) - Ahora que los elementos existen ---
+    // --- 3. LÓGICA DE INTERRUPTORES (SWITCHES) ---
 
     document.getElementById('checkKitDerrames').addEventListener('change', function() {
         const div = document.getElementById('bloqueKitDerrames');
