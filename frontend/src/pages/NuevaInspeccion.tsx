@@ -7,8 +7,8 @@ import { motion } from "framer-motion";
 import SignatureCanvas from "react-signature-canvas";
 import { format } from "date-fns";
 import { Save, AlertTriangle, Camera, Eraser, Info, Link2 } from "lucide-react";
-import { useCrearInspeccion, getListarInspeccionesQueryKey, type CrearInspeccionRequest } from "@workspace/api-client-react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiCrearInspeccion } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 import { StatusToggle } from "@/components/ui/StatusToggle";
 import {
@@ -85,16 +85,15 @@ export default function NuevaInspeccion() {
   const watchAplicaRemolque = form.watch("aplica_remolque");
   const watchAplicaKitDerrames = form.watch("aplica_kit_derrames");
 
-  const { mutate: createInsp, isPending } = useCrearInspeccion({
-    mutation: {
-      onSuccess: (data) => {
-        toast({ title: "Éxito", description: "Inspección guardada correctamente." });
-        queryClient.invalidateQueries({ queryKey: getListarInspeccionesQueryKey() });
-        setLocation(`/preoperacional/inspeccion/${data.id}`);
-      },
-      onError: () => {
-        toast({ title: "Error", description: "No se pudo guardar la inspección.", variant: "destructive" });
-      }
+  const { mutate: createInsp, isPending } = useMutation({
+    mutationFn: apiCrearInspeccion,
+    onSuccess: (data) => {
+      toast({ title: "Éxito", description: "Inspección guardada correctamente." });
+      queryClient.invalidateQueries({ queryKey: ['inspecciones'] });
+      setLocation(`/preoperacional/inspeccion/${data.id}`);
+    },
+    onError: () => {
+      toast({ title: "Error", description: "No se pudo guardar la inspección.", variant: "destructive" });
     }
   });
 
@@ -106,7 +105,7 @@ export default function NuevaInspeccion() {
   };
 
   const onSubmit = (data: FormValues) => {
-    const payload: CrearInspeccionRequest = {
+    const payload = {
       ...data,
       vehiculo_placa: data.vehiculo_placa.toUpperCase(),
       cabezote: cleanSection(data.cabezote),
@@ -121,7 +120,7 @@ export default function NuevaInspeccion() {
       firma_conductor: sigConductorRef.current?.isEmpty() ? null : (sigConductorRef.current?.toDataURL() ?? null),
       firma_inspector: sigInspectorRef.current?.isEmpty() ? null : (sigInspectorRef.current?.toDataURL() ?? null),
     };
-    createInsp({ data: payload });
+    createInsp(payload);
   };
 
   const onInvalid = (errors: Record<string, unknown>) => {
