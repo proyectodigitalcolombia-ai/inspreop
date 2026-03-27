@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Plus, History, ClipboardList, ChevronRight, Truck, FileText } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { apiListarInspecciones } from "@/lib/api";
+import { useListarInspecciones } from "@workspace/api-client-react";
 
 export default function Home() {
-  const { data: inspecciones, isLoading } = useQuery({
-    queryKey: ['/api/inspecciones/historial'],
-    queryFn: apiListarInspecciones,
+  const { data: inspecciones, isLoading } = useListarInspecciones({
+    query: {
+      queryKey: ["/api/itr/preop/inspecciones"]
+    }
   });
 
   const recentInspections = inspecciones?.slice(0, 5) || [];
@@ -74,7 +74,7 @@ export default function Home() {
                 <FileText className="w-8 h-8 text-muted-foreground/50" />
               </div>
               <h3 className="text-lg font-bold text-foreground mb-1">Sin inspecciones</h3>
-              <p className="text-muted-foreground max-w-sm">No hay registros recientes. Crea una nueva para comenzar.</p>
+              <p className="text-muted-foreground max-w-sm">No hay registros de inspecciones recientes. Crea una nueva para comenzar.</p>
               <Link
                 href="/preoperacional/nueva"
                 className="mt-6 inline-flex px-4 py-2 bg-primary/10 text-primary rounded-lg font-semibold hover:bg-primary/20 transition-colors"
