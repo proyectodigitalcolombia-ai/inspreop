@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { ArrowLeft, CheckCircle2, Download, Printer, XCircle, MinusCircle, User, Truck, FileText } from "lucide-react";
-import { useGetInspeccion, type ItemEstado } from "@workspace/api-client-react";
+import { useQuery } from "@tanstack/react-query";
+import { apiGetInspeccion, type ItemEstado } from "@/lib/api";
 import { generateInspectionPDF } from "@/lib/pdf-generator";
 import {
   CABEZOTE_ITEMS,
@@ -21,8 +22,10 @@ export default function DetalleInspeccion() {
   const [, params] = useRoute("/inspeccion/:id");
   const id = parseInt(params?.id || "0");
 
-  const { data: insp, isLoading, isError } = useGetInspeccion(id, {
-    query: { enabled: !!id }
+  const { data: insp, isLoading, isError } = useQuery({
+    queryKey: ['inspeccion', id],
+    queryFn: () => apiGetInspeccion(id),
+    enabled: !!id
   });
 
   if (isLoading) return (
