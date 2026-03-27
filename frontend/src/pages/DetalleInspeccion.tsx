@@ -2,9 +2,8 @@ import { useRoute, Link } from "wouter";
 import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
-import { ArrowLeft, CheckCircle2, Download, XCircle, MinusCircle, User, Truck, FileText } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
-import { apiGetInspeccion, type ItemEstado } from "@/lib/api";
+import { ArrowLeft, CheckCircle2, Download, Printer, XCircle, MinusCircle, User, Truck, FileText } from "lucide-react";
+import { useGetInspeccion, type ItemEstado } from "@workspace/api-client-react";
 import { generateInspectionPDF } from "@/lib/pdf-generator";
 import {
   CABEZOTE_ITEMS,
@@ -22,10 +21,8 @@ export default function DetalleInspeccion() {
   const [, params] = useRoute("/inspeccion/:id");
   const id = parseInt(params?.id || "0");
 
-  const { data: insp, isLoading, isError } = useQuery({
-    queryKey: ['/api/inspecciones', id],
-    queryFn: () => apiGetInspeccion(id),
-    enabled: !!id,
+  const { data: insp, isLoading, isError } = useGetInspeccion(id, {
+    query: { enabled: !!id }
   });
 
   if (isLoading) return (
@@ -45,7 +42,7 @@ export default function DetalleInspeccion() {
   );
 
   const handleDownloadPdf = () => {
-    generateInspectionPDF(insp as any);
+    generateInspectionPDF(insp);
   };
 
   const StatusIcon = ({ status }: { status?: ItemEstado | null }) => {
@@ -73,6 +70,7 @@ export default function DetalleInspeccion() {
 
   return (
     <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} className="space-y-6 max-w-5xl mx-auto">
+      {/* Header Actions */}
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
         <Link
           href="/preoperacional/historial"
@@ -93,6 +91,7 @@ export default function DetalleInspeccion() {
       </div>
 
       <div className="bg-card rounded-2xl shadow-sm border border-border overflow-hidden">
+        {/* Banner Info */}
         <div className="bg-gradient-to-r from-slate-900 to-slate-800 p-6 sm:p-8 text-white flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
           <div>
             <div className="inline-flex items-center px-2.5 py-1 rounded-full bg-white/10 text-white/90 text-xs font-semibold uppercase tracking-wider mb-4 border border-white/20">
@@ -112,6 +111,7 @@ export default function DetalleInspeccion() {
           </div>
         </div>
 
+        {/* General Info Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border border-b border-border bg-muted/20">
           <div className="p-6 sm:p-8 flex items-start gap-4">
             <div className="p-3 bg-blue-100 text-blue-600 rounded-xl">
@@ -138,6 +138,7 @@ export default function DetalleInspeccion() {
           </div>
         </div>
 
+        {/* Detailed Sections */}
         <div className="p-6 sm:p-8">
           <SectionView title="1. Inspección Cabezote" items={CABEZOTE_ITEMS} data={insp.cabezote} />
           
@@ -168,6 +169,7 @@ export default function DetalleInspeccion() {
             </div>
           )}
 
+          {/* Signatures */}
           <div className="mt-12 pt-8 border-t border-border">
             <h3 className="text-center font-display font-bold text-xl mb-8">Firmas de Responsabilidad</h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-8">
