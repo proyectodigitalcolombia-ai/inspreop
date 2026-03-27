@@ -1,7 +1,7 @@
 import jsPDF from "jspdf";
 import autoTable from "jspdf-autotable";
 import { format } from "date-fns";
-import type { InspeccionDetalle } from "@workspace/api-client-react";
+import type { InspeccionDetalle } from "@/lib/api";
 import {
   CABEZOTE_ITEMS,
   REMOLQUE_ESTRUCTURA_ITEMS,
