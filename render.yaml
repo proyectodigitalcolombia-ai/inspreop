@@ -1,11 +1,10 @@
 services:
-  # Servicio Web Principal
   - type: web
     name: inspeccion-vehiculos-app
     env: node
     plan: free
-    buildCommand: npm install
-    startCommand: node index.js
+    buildCommand: npm install && cd frontend && npm install && npm run build && cd ..
+    startCommand: node safenode-inspecciones/src/server.js
     envVars:
       - key: NODE_VERSION
         value: "20"
@@ -14,7 +13,6 @@ services:
           name: db-inspecciones
           property: connectionString
 
-# Base de Datos PostgreSQL
 databases:
   - name: db-inspecciones
     plan: free
