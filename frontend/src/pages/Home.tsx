@@ -3,13 +3,13 @@ import { motion } from "framer-motion";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Plus, History, ClipboardList, ChevronRight, Truck, FileText } from "lucide-react";
-import { useListarInspecciones } from "@workspace/api-client-react";
+import { useQuery } from "@tanstack/react-query";
+import { apiListarInspecciones } from "@/lib/api";
 
 export default function Home() {
-  const { data: inspecciones, isLoading } = useListarInspecciones({
-    query: {
-      queryKey: ["/api/itr/preop/inspecciones"]
-    }
+  const { data: inspecciones, isLoading } = useQuery({
+    queryKey: ['inspecciones'],
+    queryFn: apiListarInspecciones
   });
 
   const recentInspections = inspecciones?.slice(0, 5) || [];
