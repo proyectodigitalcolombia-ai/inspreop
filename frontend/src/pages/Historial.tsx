@@ -4,8 +4,8 @@ import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { motion } from "framer-motion";
 import { Search, Filter, Eye, Trash2, FileText, AlertCircle } from "lucide-react";
-import { useListarInspecciones, useEliminarInspeccion, getListarInspeccionesQueryKey } from "@workspace/api-client-react";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
+import { apiListarInspecciones, apiEliminarInspeccion } from "@/lib/api";
 import { useToast } from "@/hooks/use-toast";
 
 export default function Historial() {
@@ -13,25 +13,25 @@ export default function Historial() {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const { data: inspecciones, isLoading } = useListarInspecciones({
-    query: { queryKey: ["/api/itr/preop/inspecciones"] }
+  const { data: inspecciones, isLoading } = useQuery({
+    queryKey: ['inspecciones'],
+    queryFn: apiListarInspecciones
   });
 
-  const { mutate: deleteInsp, isPending: isDeleting } = useEliminarInspeccion({
-    mutation: {
-      onSuccess: () => {
-        toast({ title: "Inspección eliminada", description: "El registro se eliminó correctamente." });
-        queryClient.invalidateQueries({ queryKey: getListarInspeccionesQueryKey() });
-      },
-      onError: () => {
-        toast({ title: "Error", description: "No se pudo eliminar el registro.", variant: "destructive" });
-      }
+  const { mutate: deleteInsp, isPending: isDeleting } = useMutation({
+    mutationFn: (id: number) => apiEliminarInspeccion(id),
+    onSuccess: () => {
+      toast({ title: "Inspección eliminada", description: "El registro se eliminó correctamente." });
+      queryClient.invalidateQueries({ queryKey: ['inspecciones'] });
+    },
+    onError: () => {
+      toast({ title: "Error", description: "No se pudo eliminar el registro.", variant: "destructive" });
     }
   });
 
   const handleDelete = (id: number) => {
     if (confirm("¿Estás seguro de eliminar esta inspección? Esta acción no se puede deshacer.")) {
-      deleteInsp({ id });
+      deleteInsp(id);
     }
   };
 
